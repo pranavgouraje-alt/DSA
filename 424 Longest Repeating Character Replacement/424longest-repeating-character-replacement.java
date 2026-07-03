@@ -1,0 +1,23 @@
+class Solution {
+    public int characterReplacement(String s, int k) {
+        int count[]=new int[26];
+        int maxl=0;
+        int maxfreq=0;
+        int l=0,r=0;
+
+       for ( r = 0; r < s.length(); r++)
+        {
+            count[s.charAt(r)-'A']++;
+            maxfreq=Math.max(maxfreq,count[s.charAt(r)-'A']);
+
+            if((r-l+1)-maxfreq>k)
+            {
+                 count[s.charAt(l)-'A']--;
+                 l++;
+            }
+
+            maxl=Math.max(maxl,r-l+1);
+        }
+        return maxl;
+    }
+}
